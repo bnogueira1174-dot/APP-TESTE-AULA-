@@ -43,7 +43,9 @@ import { cn } from '@/lib/utils'
 const activeVehicles = mockVehicles.filter((v) => v.status === 'active').length
 const onlineDrivers = mockDrivers.filter((d) => d.status === 'on-trip' || d.status === 'online').length
 const unreadAlerts = mockNotifications.filter((n) => !n.read).length
-const avgConsumption = (mockVehicles.reduce((s, v) => s + v.avgConsumption, 0) / mockVehicles.length).toFixed(1)
+const avgConsumption = mockVehicles.length > 0
+  ? (mockVehicles.reduce((s, v) => s + v.avgConsumption, 0) / mockVehicles.length).toFixed(1)
+  : '—'
 
 const fleetStatusData = [
   { name: 'Ativos', value: mockVehicles.filter((v) => v.status === 'active').length, color: '#10b981' },
